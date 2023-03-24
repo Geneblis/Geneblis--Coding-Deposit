@@ -1,0 +1,71 @@
+scripted_gui = {
+	progressbar_example = {
+		context_type = decision_category ##player_context caso não usar scripted_gui = progressbar_example em uma categoria de decisão.
+		window_name = "chart_example_container"
+
+		triggers = {
+			le_progress_bar_visible = {
+				check_variable = { le_progress_bar_frame_var > 0 }
+			}
+			second_progress_bar_visible  = {
+				check_variable = { second_progress_bar_var > 0 }
+			}
+		}
+
+		effects = {
+			add_button_click = {
+				if = {
+					limit = {
+						check_variable = { le_progress_bar_frame_var < 100 }
+					}
+					add_to_variable = { le_progress_bar_frame_var = 5 }
+					add_to_variable = { second_progress_bar_var = 5 }
+				}
+				clamp_variable = {
+					var = le_progress_bar_frame_var
+					max = 100
+				}
+				clamp_variable = {
+					var = second_progress_bar_var
+					max = 100
+				}
+			}
+			subtract_button_click = {
+				if = {
+					limit = {
+						check_variable = { le_progress_bar_frame_var > 0 }
+					}
+					add_to_variable = { le_progress_bar_frame_var = -5 }
+					add_to_variable = { second_progress_bar_var = -5 }
+				}
+				clamp_variable = {
+					var = le_progress_bar_frame_var
+					min = 0
+				}
+				clamp_variable = {
+					var = second_progress_bar_var
+					min = 0
+				}
+			}
+			random_button_click = {
+				randomize_variable = {
+					var = le_progress_bar_frame_var
+					distribution = uniform
+					min = 0
+					max = 100
+				}
+				round_variable = le_progress_bar_frame_var
+			}
+		}
+		
+		#Posicao do frame está relacionada com a variavel "le_progress_bar_frame_var"
+		properties = {
+			le_progress_bar = {
+				frame = le_progress_bar_frame_var
+			}
+			second_progress_bar = {
+				frame = second_progress_bar_var
+			}
+		}
+	}
+}

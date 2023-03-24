@@ -1,0 +1,24 @@
+TAG = {
+    every_owned_state = {
+        add_core_of = ROOT
+    }
+}
+annex_country = { target = TAG }
+ROOT = {
+	every_core_state = {
+		remove_core_of = TAG
+	} 
+}
+
+If you want to get cores on TAG's cores, and not owned states:
+
+every_state = {
+    limit = { is_core_of = TAG }
+    add_core_of = ROOT
+}
+annex_country = { target = TAG }
+ROOT = {
+	every_core_state = {
+		remove_core_of = TAG
+	} 
+}

@@ -1,0 +1,4 @@
+delete_unit_template_and_units = {
+    division_template = "Comando de invasión"
+    disband = yes
+}

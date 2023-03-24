@@ -1,0 +1,54 @@
+scripted_gui = {
+	hololive = {
+		context_type = player_context
+		window_name = "chart_example_container"
+
+		triggers = {
+			gura_chart_visible = {
+				check_variable = { gura_chart_frame > 0 }
+			}
+		}
+
+		effects = {
+			add_button_click = {
+				if = {
+					limit = {
+						check_variable = { gura_chart_frame < 100 }
+					}
+					add_to_variable = { gura_chart_frame = 10 }
+				}
+				clamp_variable = {
+					var = gura_chart_frame
+					max = 100
+				}
+			}
+			subtract_button_click = {
+				if = {
+					limit = {
+						check_variable = { gura_chart_frame > 0 }
+					}
+					add_to_variable = { gura_chart_frame = -10 }
+				}
+				clamp_variable = {
+					var = gura_chart_frame
+					min = 0
+				}
+			}
+			random_button_click = {
+				randomize_variable = {
+					var = gura_chart_frame
+					distribution = uniform
+					min = 0
+					max = 100
+				}
+				round_variable = gura_chart_frame
+			}
+		}
+
+		properties = {
+			gura_chart = {
+				frame = gura_chart_frame
+			}
+		}
+	}
+}

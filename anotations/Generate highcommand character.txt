@@ -1,0 +1,19 @@
+generate_character = {
+    token_base = army_chief_defensive_1
+    #name = Without a name set, a random name is then choosen.
+    advisor = {
+        slot = air_chief
+        cost = 50
+	ledger = #high_command theorist army air navy
+	available = {
+		#
+	}
+        idea_token = ROOT_character_token_air_chief
+        traits = {
+            air_chief_ground_support_2
+        }
+        allowed = {
+            always = yes
+        }
+    }
+}

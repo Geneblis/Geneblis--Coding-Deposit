@@ -1,0 +1,11 @@
+STATE = {
+	owner = {
+		ROOT = {
+			create_wargoal = {
+				target = PREV
+				type = take_state_focus
+				generator = { STATE }
+			}
+		}
+	}
+}

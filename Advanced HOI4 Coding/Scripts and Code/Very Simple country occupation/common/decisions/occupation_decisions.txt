@@ -1,0 +1,114 @@
+political_actions = {
+
+	occupation_prepare_puppet_zone = {  
+        available = {                           
+			always = yes
+		}
+        activation = {
+			ROOT = {
+				AND = {
+					is_subject = no
+					has_war = no
+					any_owned_state = {
+						NOT = {
+							OR = {
+								is_core_of = ROOT
+								is_claimed_by = ROOT
+							}
+						}
+					}
+				}
+			}
+        }
+		cancel_trigger = {
+			ROOT = {
+				OR = {
+					is_subject = yes
+					has_war = yes
+					all_owned_state = {
+						is_core_of = ROOT
+						is_claimed_by = ROOT
+					}
+				}
+			}
+		}
+        is_good = yes
+        days_mission_timeout = 30
+		selectable_mission = yes
+        timeout_effect = {
+			ROOT = {
+				every_occupied_country = {
+					limit = {
+						NOT = {
+							country_exists = THIS
+						}
+					}
+					every_state = {
+						if = {
+							limit = {
+								AND = {
+									is_core_of = PREV
+									is_core_of = ROOT
+								}
+							}
+							remove_core_of = PREV
+						}
+						else_if = {
+							limit = {
+								AND = {
+									is_claimed_by = PREV
+									is_claimed_by = ROOT
+								}
+							}
+							remove_claim_by = PREV
+						}
+						else = {
+						}
+					}
+				}
+				country_event = {
+					id = occupation_lolz.1
+					days = 1
+				}
+			}
+        }
+        complete_effect = {
+			ROOT = {
+				every_occupied_country = {
+					limit = {
+						NOT = {
+							country_exists = THIS
+						}
+					}
+					every_state = {
+						if = {
+							limit = {
+								AND = {
+									is_core_of = PREV
+									is_core_of = ROOT
+								}
+							}
+							remove_core_of = PREV
+						}
+						else_if = {
+							limit = {
+								AND = {
+									is_claimed_by = PREV
+									is_claimed_by = ROOT
+								}
+							}
+							remove_claim_by = PREV
+						}
+						else = {
+						}
+					}
+				}
+				country_event = {
+					id = occupation_lolz.1
+					days = 1
+				}
+			}
+        }
+	}
+	
+}

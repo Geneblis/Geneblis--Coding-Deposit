@@ -1,0 +1,10 @@
+spriteTypes = {
+	progressbartype = {
+		name = "GFX_gura_chart"
+		textureFile1 = "gfx/interface/chart/gura_chart_full.dds"
+		textureFile2 = "gfx/interface/chart/chart_empty.dds"
+		size = { x = 402 y = 402 }
+		effectFile = "gfx/FX/circularprogresschart.shader"
+		horizontal = yes
+	}
+}

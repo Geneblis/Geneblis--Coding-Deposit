@@ -1,0 +1,23 @@
+				allowed = {
+					AND = {
+						original_tag = UKR
+						OR = {
+								has_country_leader = {
+								name = "Viktor Belash"
+								ruling_only = yes
+							}
+								has_country_leader = {
+								name = "Lev Dovator"
+								ruling_only = yes
+							}
+								has_country_leader = {
+								name = "Nestor Makhno"
+								ruling_only = yes
+							}
+								has_country_leader = {
+								name = "The Council of Anarchists"
+								ruling_only = yes
+							}
+						}
+					}
+				}

@@ -1,0 +1,20 @@
+﻿l_english:
+
+ # Decisions
+  parliament_gui_decision_category:0 "Parliament GUI Examples§!"
+  parliament_gui_decision_category_desc:0 "placeholder text\nplaceholder text\nplaceholder text"
+
+ # Scripted GUIs
+  parliament_gui_title:0 "Grid Parliament"
+  semicircle_parliament_gui_title:0 "Semicircle Parliament"
+  parliament_main_icon_tt:0 "[GetParliamentSeatName] - [GetParliamentPartyName]"
+  parliament_seat_text:0 "Seat [?temp_seat|Y0]"
+  parliament_member_text:0 "[GetParliamentPartyName] - [?parliament_seat_array^parliament_member_index] Seats"
+  parliament_modify_button_tt:0 "§GCtrl+Click§! to add §Y5§! Seats from [GetParliamentPartyName]\n§GShift+Click§! to subtract §Y5§! Seats from [GetParliamentPartyName]"
+
+  party_1_text:0 "§RPTB§! Party"
+  party_2_text:0 "§YPSD§! Party"
+  party_3_text:0 "§GARENA§! Party"
+  party_4_text:0 "§BUDN§! Party"
+  party_5_text:0 "§OPRP§! Party"
+  

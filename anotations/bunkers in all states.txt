@@ -1,0 +1,10 @@
+ every_owned_state = {
+ set_building_level = {
+   type = bunker
+   level = 1
+ province = {
+   all_provinces = yes
+   limit_to_border = yes
+    	    }
+	}
+}

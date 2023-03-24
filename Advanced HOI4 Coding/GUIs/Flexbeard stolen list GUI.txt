@@ -1,0 +1,53 @@
+###NOTE: DONT USE THIS ONE, IT IS STRICLY MADE FOR AOL, USAGE OUTSIDE OF AOL REQUIRES ASKING HIM FIRST.
+
+guiTypes = {
+    containerWindowType = {
+        name = "MY_gui_name"
+        position = { x = 28 y = 87 }
+
+        gridboxtype = {
+            name = "cool_picture_list"
+            position = { x = 0 y = 0 }
+            size = { width = 672 height = 43 }
+            slotsize = { width = 48 height = 43 }     # Each item is 48px wide, 43px tall
+            add_horizontal = yes                      # Add horizontal first 
+            max_slots_horizontal = 14                 # How many horizontal  items before wrapping to a new line
+        }
+    }
+
+    containerWindowType = {
+        name = "MY_cool_picture"
+        position = { x = 0 y = 0 }
+
+        buttonType = {
+            name = "picture_button"
+            spriteType = "GFX_MY_picture"
+            position = { x = 0 y = 0 }
+        }
+    }
+}
+
+
+scripted_gui = {
+    MY_gui_name = {
+        window_name = "MY_gui_name"
+        context_type = player_context
+        parent_window_token = top_bar
+
+        dynamic_lists = {
+            cool_picture_list = {
+                array = MY_picture_array              # Any array variable
+                change_scope = no                     # For an array of scopes, can be yes to scope into that scope
+                entry_container = MY_cool_picture
+                index = cool_picture_idx              # Temp var that the index is stored in, so the first picture has `cool_picture_idx = 0`, etc.
+                value = cool_picture_val              # Temp var that the array value is stored in, so the first picture has `cool_picture_val = MY_picture_array^0`, etc.
+            }
+        }
+
+        effects = {
+            picture_button_click = {
+                set_variable = { MY_selected_picture = cool_picture_val }
+            }
+        }
+    }
+}

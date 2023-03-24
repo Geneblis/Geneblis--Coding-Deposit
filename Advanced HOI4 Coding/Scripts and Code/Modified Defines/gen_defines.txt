@@ -1,0 +1,28 @@
+
+---Lower volunteer requirements.
+NDefines.NDiplomacy.VOLUNTEERS_DIVISIONS_REQUIRED = 8;
+NDefines.NDiplomacy.TENSION_VOLUNTEER_FORCE_DIVISION  = 0.3;
+NDefines.NDiplomacy.VOLUNTEERS_PER_TARGET_PROVINCE = 0.5;
+NDefines.NCountry.AIR_VOLUNTEER_PLANES_LIMIT = 2;
+NDefines.NCountry.AIR_VOLUNTEER_BASES_CAPACITY_LIMIT = 1;
+NDefines.NDiplomacy.VOLUNTEERS_PER_COUNTRY_ARMY = 0.35;
+NDefines.NDiplomacy.VOLUNTEERS_RETURN_EQUIPMENT = 0.75;
+NDefines.NDiplomacy.VOLUNTEERS_TRANSFER_SPEED = 12;
+NDefines.NDiplomacy.OPINION_PER_VOLUNTEER = 2;
+NDefines.NDiplomacy.MAX_OPINION_FROM_VOLUNTEERS = 60;
+
+---Optimizations.
+NDefines.NGame.LAG_DAYS_FOR_LOWER_SPEED = 30;
+NDefines.NGame.LAG_DAYS_FOR_PAUSE = 18;
+NDefines.NGame.COMBAT_LOG_MAX_MONTHS = 36;  ---combat log gets deleted after X days
+NDefines.NGame.AIR_LOG_TIMEOUT_HOURS = 24; ---air combat log gets deleted after X hours
+NDefines.NGame.GARRISON_LOG_MAX_MONTHS = 6; ---garrison log gets delted after X months
+NDefines.NCountry.POPULATION_YEARLY_GROWTH_BASE = 0.002;
+NDefines.NCountry.BASE_RESEARCH_SLOTS = 4;
+
+---Slighlty Aggressive AI
+NDefines.NAI.AGGRESSIVENESS_BONUS_FOR_FRONTS_THAT_ARE_ON_HIGH_AGGRESSIVENESS = -0.6;	-- AI gets a bonus to aggresiveness if it is already executing an aggressive plan (lower is more aggressive)
+NDefines.NAI.AGGRESSIVENESS_CHECK_CAREFUL = 0.3;						-- at what front strength balance do we go careful
+NDefines.NAI.AGGRESSIVENESS_CHECK_PARTLY_FORTIFIED_WEAK_POINTS = 0.25;	-- if front strength balance is at or above this value versus a party fortified enemy, we rush attack weak points; below this value, we are careful
+NDefines.NAI.COMBINED_ARMS_LEVEL = 2;									-- AI do funny templates
+NDefines.NAI.MAX_DISTANCE_NAVAL_INVASION = 500;						--Always seek invasion

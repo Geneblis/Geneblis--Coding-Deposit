@@ -1,0 +1,31 @@
+guiTypes = {
+	containerWindowType = {
+        name = "chart_example_container"
+        position = { x = 0 y = 0 }
+		size = { width = 600 height = 600 }
+		orientation = center
+		origo = center
+
+		iconType = {
+			name = "gura_chart"
+			position = { x = 0 y = 0 }
+			spriteType = "GFX_gura_chart"
+		}
+
+		buttonType = {
+			name = "add_button"
+			position = { x = 100 y = 500 }
+			spriteType = "GFX_add_10"
+		}
+		buttonType = {
+			name = "subtract_button"
+			position = { x = 150 y = 500 }
+			spriteType = "GFX_subtract_10"
+		}
+		buttonType = {
+			name = "random_button"
+			position = { x = 200 y = 500 }
+			spriteType = "GFX_playlist_button"
+		}
+	}
+}

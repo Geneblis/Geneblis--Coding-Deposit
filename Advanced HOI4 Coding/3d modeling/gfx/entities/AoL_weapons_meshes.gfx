@@ -1,0 +1,6 @@
+objectTypes = {	
+	pdxmesh = {
+		name = "fnfal_mg_infantry_weapon_rifle"
+		file = "gfx/models/units/fal_weapon_rifle2.mesh"
+	}
+}

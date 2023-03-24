@@ -1,0 +1,113 @@
+###HoI4 AI Unit Production Limiter###
+###------------------------------
+###Originally made by GunnarVonPontius
+###Adapted to variables by Yard1
+###Ashes of Libertad modifications by Geneblis
+###------------------------------
+###Limits the amount of divisions an AI country has to the number of factories (civ, mil, nav) it has
+###If your mod adds new unit types, make sure to add them in as well
+###
+###Usage: create an is_exempt_from_division_limit scripted trigger (common/scripted_triggers) to exempt countries from being limited (eg. while at war etc.)
+###Example scripted trigger:
+###is_exempt_from_division_limit = {
+###	OR = {
+###		has_war = yes
+###		has_civil_war = yes
+###	}
+###}
+
+ai_unit_production_limiter = {
+	enable = {
+		set_temp_variable = {
+			upper_limit = num_of_factories
+		}
+		multiply_temp_variable = {
+			upper_limit = 1.2
+		}
+		if = {
+			limit = {
+				has_war = yes
+			}
+			multiply_temp_variable = {
+				upper_limit = 2.0
+			}
+		}
+		if = {
+			limit = {
+				is_major = yes
+			}
+			multiply_temp_variable = {
+				upper_limit = 1.75
+			}
+		}
+		if = {
+			limit = {
+				threat > 0.75
+			}
+			multiply_temp_variable = {
+				upper_limit = 1.25
+			}
+		}
+		check_variable = {
+			num_divisions > upper_limit
+		}
+	}
+	abort = {
+		check_variable = {
+			num_divisions < upper_limit
+		}
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = force_build_armies
+		value = -10
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = paratrooper
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = suppression
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = militias
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = irregular_infantry
+		value = -100
+	}
+
+}
