@@ -1,0 +1,11 @@
+every_possible_country = { #Is a universal country or whatever.
+	limit = {
+		has_country_flag = is_universal
+	}
+	every_core_state = {
+		add_to_array = {
+			array = global.is_a_universal_state
+			value = THIS.id
+		}
+	}
+}
