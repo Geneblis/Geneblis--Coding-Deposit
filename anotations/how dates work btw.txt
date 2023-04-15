@@ -1,3 +1,0 @@
-date > 1967.09.03
-> data é MENOR que *data*
-< data eh MAIOR que *data*

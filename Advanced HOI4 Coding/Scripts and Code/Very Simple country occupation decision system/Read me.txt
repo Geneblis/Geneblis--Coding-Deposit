@@ -1,5 +1,5 @@
 This is a simple decision-based occupation mechanic, similar to TWR, KR, and KX. 
-The main point of this decision too is to be versatile as possible. 
+The main point of this system is to be versatile as possible. 
 That's why no state flags were used, only stuff already coded in the vanilla game, such as cores and claims. 
 Reading through the code you can get an easier understanding of how it works but it simply works by utilizing claims and cores to the best of my abilities. 
 Have fun tweaking it.
