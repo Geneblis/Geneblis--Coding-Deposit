@@ -1,0 +1,38 @@
+your_unification_category_or_smth = {
+	unification_decision = {
+		visible = {
+			OR = { #For multiple tags
+				original_tag = TAG1
+				original_tag = TAG2
+			}
+		}
+		fire_only_once = yes
+		available = {
+			ROOT = { #Player Nation
+				AND = {
+					has_war = no
+					all_of_scopes = { #Makes the array into a scope
+						array = global.is_a_universal_state
+						tooltip = COL_all_states_tt
+						is_owned_and_controlled_by = ROOT
+					}
+				}
+			}
+		}
+		complete_effect = {
+			every_state = {
+				limit = {
+					is_in_array = {
+						array = global.is_a_universal_state
+						value = THIS.id
+					}
+				}
+				add_core_of = ROOT
+			}
+			clear_array = global.is_a_universal_state
+		}
+		ai_will_do = {
+			factor = 9999
+		}
+	}
+}

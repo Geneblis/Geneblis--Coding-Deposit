@@ -46,11 +46,24 @@ division_template = {
     }
 }
 
-STATE = {
-				create_unit = {
-					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.95 start_equipment_factor = 0.95"
-					allow_spawning_on_enemy_provs = yes
-					prioritize_location = PROVINCE_WITHIN_STATE
-					owner = ROOT
+###This one below is to make divisions without OOBs. Pretty useful.
+
+		ROOT = {
+			division_template = {
+				name = "International Marxist Brigades"
+				is_locked = yes
+				priority = 1
+				template_counter = 3
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
 				}
-}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"International Marxist Brigade\" division_template = \"International Marxist Brigades\" start_experience_factor = 0.1 start_equipment_factor = 1.0" owner = PREV.PREV count = 2
+				}
+			}
+		}

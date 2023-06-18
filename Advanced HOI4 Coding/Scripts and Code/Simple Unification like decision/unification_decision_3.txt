@@ -1,0 +1,28 @@
+your_unification_category_or_smth = {
+	unification_decision_using_states = { #This one, unlike the unification_decision_2 can target states but cannot remove cores, since I want to make this script versitile as possible. 
+		visible = {
+			OR = { #For multiple tags
+				original_tag = TAG1
+				original_tag = TAG2
+			}
+		}
+		target_root_trigger = {
+			#original_tag = TAG1
+			#You can add any trigger you desire, or even none, aka, always = yes
+		}
+		targets_dynamic = yes
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				NOT = {is_core_of = ROOT}
+			}
+		}
+		cost = 20
+		complete_effect = {
+			FROM = {
+				add_core_of = ROOT
+			}
+		}
+	}
+}
