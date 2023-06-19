@@ -19,7 +19,8 @@ your_unification_category_or_smth = {
 			}
 		}
 		cost = 20
-		complete_effect = {
+		days_remove = 14
+		remove_effect = {
 			FROM = {
 				add_core_of = ROOT
 			}
