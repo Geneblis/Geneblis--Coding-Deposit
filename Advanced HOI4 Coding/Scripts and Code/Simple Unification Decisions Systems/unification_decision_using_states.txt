@@ -1,0 +1,86 @@
+your_unification_category_or_smth = {
+	#This system is divided into two parts, first you remove the cores of FROM and add a state flag to their, now uncored states.
+	#After this is done, the decision moves to the second phase, in which all states that ROOT has owned and has the same state flag set up before can be cored.
+	#In theory, this system can be both used with a Country flag, Global flag or usage for an specific country and is very performance friendly and versitile.
+	#The only issue with this system is so it cant remove shared cores (cored states that 2 or more countries have) if ROOT has that state also cored.
+	#-Genesis
+	unification_decision_phase_one = {
+		visible = {
+			always = yes
+		}
+		target_root_trigger = {
+			always = yes
+		}
+		targets_dynamic = yes
+		target_non_existing = yes
+		target_trigger = {
+			FROM = {
+				any_core_state = {
+					AND = {
+						is_core_of = FROM 
+						is_owned_and_controlled_by = ROOT
+						NOT = {is_core_of = ROOT}
+					}
+				}
+			}
+		}
+		cost = 25
+		modifier = {
+			political_power_gain = -0.15
+		}
+		remove_effect = {
+			FROM = {
+				every_core_state = {
+					limit = {
+						AND = {
+							is_core_of = FROM
+							is_owned_and_controlled_by = ROOT
+							NOT = {is_core_of = ROOT}
+						}
+					}
+					set_state_flag = can_get_cored
+					remove_core_of = PREV
+				}
+			}
+		}
+		days_remove = 30
+		ai_will_do = {
+			base = 1
+		}
+	}
+	unification_decision_phase_two = {
+		visible = {
+			always = yes
+		}
+		target_root_trigger = {
+			any_owned_state = {
+				has_state_flag = can_get_cored
+			}
+		}
+		targets_dynamic = yes
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				AND = {
+					has_state_flag = can_get_cored
+					is_owned_and_controlled_by = ROOT
+					NOT = {is_core_of = ROOT}
+				}
+			}
+		}
+		cost = 0
+		days_remove = 35
+		modifier = {
+			political_power_gain = -0.15
+		}
+		remove_effect = {
+			FROM = {
+				add_core_of = ROOT
+				clr_state_flag = can_get_cored
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+}
