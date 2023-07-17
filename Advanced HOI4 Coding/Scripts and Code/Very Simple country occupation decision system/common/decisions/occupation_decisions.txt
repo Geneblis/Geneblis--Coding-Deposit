@@ -26,8 +26,10 @@ political_actions = {
 					is_subject = yes
 					has_war = yes
 					all_owned_state = {
-						is_core_of = ROOT
-						is_claimed_by = ROOT
+						OR = {
+							is_core_of = ROOT
+							is_claimed_by = ROOT
+						}
 					}
 				}
 			}
@@ -53,7 +55,7 @@ political_actions = {
 							}
 							remove_core_of = PREV
 						}
-						else_if = {
+						if = {
 							limit = {
 								AND = {
 									is_claimed_by = PREV
@@ -90,7 +92,7 @@ political_actions = {
 							}
 							remove_core_of = PREV
 						}
-						else_if = {
+						if = {
 							limit = {
 								AND = {
 									is_claimed_by = PREV
@@ -111,4 +113,136 @@ political_actions = {
         }
 	}
 	
+	
+	###ALTERNATIVE DESIGN - DECISION TARGET SYSTEMS
+    target_occupation_prepare_puppet_zone_establish_regime_change = {
+		available = {
+			ROOT = {
+				AND = {
+					is_subject = no
+					has_war = no
+				}
+			}
+		}
+		visible = {
+			ROOT = {
+				AND = {
+					is_subject = no
+					has_war = no
+				}
+			}
+		}
+		target_root_trigger = {
+			always = yes
+		}
+		target_array = ROOT.occupied_countries
+		targets_dynamic = yes
+		target_non_existing = yes
+		target_trigger = {
+			FROM = {
+				any_core_state = {
+					is_owned_and_controlled_by = ROOT
+				}
+			}
+		}
+		icon = my_icon
+		cost = 0
+        is_good = yes
+        complete_effect = {
+			ROOT = {
+				release_puppet = FROM
+			}
+        }
+	}
+    target_occupation_prepare_puppet_zone_annex = {
+		available = {
+			ROOT = {
+				AND = {
+					is_subject = no
+					has_war = no
+				}
+			}
+		}
+		visible = {
+			ROOT = {
+				AND = {
+					is_subject = no
+					has_war = no
+				}
+			}
+		}
+		target_root_trigger = {
+			always = yes
+		}
+		target_array = ROOT.occupied_countries
+		targets_dynamic = yes
+		target_non_existing = yes
+		target_trigger = {
+			FROM = {
+				AND = {
+					any_core_state = {
+						is_owned_and_controlled_by = ROOT
+						
+						NOT = {
+							is_claimed_by = ROOT
+						}
+					}
+				}
+			}
+		}
+		icon = my_icon
+		cost = 0
+        is_good = yes
+        complete_effect = {
+			every_occupied_country = {
+				limit = {
+					NOT = {
+						country_exists = THIS
+					}
+				}
+				every_state = {
+					limit = {
+						AND = {
+							is_owned_and_controlled_by = ROOT
+							OR = {
+								is_claimed_by = FROM
+								is_core_of = FROM
+							}
+						}
+					}
+					
+					if = {
+						limit = {
+							is_claimed_by = FROM
+						}
+						remove_claim_by = FROM
+					}
+					if = {
+						limit = {
+							is_core_of = FROM
+						}
+						add_claim_by = ROOT
+					}
+					if = {
+						limit = {
+							AND = {
+								is_core_of = FROM
+								is_core_of = ROOT
+							}
+						}
+						remove_core_of = FROM
+					}
+					if = {
+						limit = {
+							AND = {
+								is_claimed_by = FROM
+								is_claimed_by = ROOT
+							}
+						}
+						remove_claim_by = FROM
+					}
+				}
+			}
+        }
+	}
 }
