@@ -1,0 +1,10 @@
+﻿l_english:
+
+ #Decisions
+  occupation_prepare_puppet_zone:0 "Prepare Occupation Zone"
+  target_occupation_prepare_puppet_zone_establish_regime_change:0 "Prepare a New Regime in [FROM.GetName]"
+  target_occupation_prepare_puppet_zone_annex:0 "Claim the Controlled land of [FROM.GetName]"
+  
+ #Events
+  occupation_lolz.1.a:0 "Release controlled nations."
+  occupation_lolz.1.b:0 "Claim their land."
