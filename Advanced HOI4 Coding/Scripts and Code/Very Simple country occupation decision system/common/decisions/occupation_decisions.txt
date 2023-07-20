@@ -157,6 +157,28 @@ political_actions = {
 		cost = 0
         is_good = yes
         complete_effect = {
+					every_state = {
+						if = {
+							limit = {
+								AND = {
+									is_core_of = FROM
+									is_core_of = ROOT
+								}
+							}
+							remove_core_of = FROM
+						}
+						if = {
+							limit = {
+								AND = {
+									is_claimed_by = FROM
+									is_claimed_by = ROOT
+								}
+							}
+							remove_claim_by = FROM
+						}
+						else = {
+						}
+					}
 			ROOT = {
 				release_puppet = FROM
 			}
