@@ -118,67 +118,57 @@ political_actions = {
     target_occupation_prepare_puppet_zone_establish_regime_change = {
 		available = {
 			ROOT = {
-				AND = {
-					is_subject = no
-					has_war = no
-				}
+				is_subject = no
+				has_war = no
 			}
 		}
 		visible = {
 			ROOT = {
-				AND = {
-					is_subject = no
-					has_war = no
-				}
+				is_subject = no
+				has_war = no
 			}
 		}
 		target_root_trigger = {
-			always = yes
+			any_owned_state = {
+				has_resistance = yes
+			}
 		}
 		target_array = ROOT.occupied_countries
-		targets_dynamic = yes
 		target_non_existing = yes
 		target_trigger = {
 			FROM = {
 				any_core_state = {
-					AND = {
-						is_owned_and_controlled_by = ROOT
-						NOT = {
-							OR = {
-								is_claimed_by = ROOT
-								is_core_of = ROOT
-							}
-						}
-					}
+					is_owned_and_controlled_by = ROOT
 				}
+				is_subject = no
+				has_war = no
+				exists = no
 			}
 		}
 		icon = my_icon
 		cost = 0
         is_good = yes
         complete_effect = {
-					every_state = {
-						if = {
-							limit = {
-								AND = {
-									is_core_of = FROM
-									is_core_of = ROOT
-								}
-							}
-							remove_core_of = FROM
-						}
-						if = {
-							limit = {
-								AND = {
-									is_claimed_by = FROM
-									is_claimed_by = ROOT
-								}
-							}
-							remove_claim_by = FROM
-						}
-						else = {
+			every_state = {
+				limit = {
+					AND = {
+						is_core_of = FROM
+						is_core_of = ROOT
+					}
+				}
+				remove_core_of = FROM
+				if = {
+					limit = {
+						AND = {
+							is_claimed_by = FROM
+							is_claimed_by = ROOT
 						}
 					}
+					remove_claim_by = FROM
+				}
+				else = {
+				}
+			}
 			ROOT = {
 				release_puppet = FROM
 			}
@@ -202,29 +192,22 @@ political_actions = {
 			}
 		}
 		target_root_trigger = {
-			always = yes
+			any_owned_state = {
+				has_resistance = yes
+			}
 		}
 		target_array = ROOT.occupied_countries
 		targets_dynamic = yes
 		target_non_existing = yes
 		target_trigger = {
 			FROM = {
-				AND = {
-					any_core_state = {
-						is_owned_and_controlled_by = ROOT
-						
-						NOT = {
-							OR = {
-								is_claimed_by = ROOT
-								is_core_of = ROOT
-							}
-						}
-					}
+				any_core_state = {
+					is_owned_and_controlled_by = ROOT
 				}
 			}
 		}
 		icon = my_icon
-		cost = 0
+		cost = 15
         is_good = yes
         complete_effect = {
 			every_occupied_country = {
@@ -233,14 +216,11 @@ political_actions = {
 						country_exists = THIS
 					}
 				}
-				every_state = {
+				every_owned_state = {
 					limit = {
-						AND = {
-							is_owned_and_controlled_by = ROOT
-							OR = {
-								is_claimed_by = FROM
-								is_core_of = FROM
-							}
+						OR = {
+							is_claimed_by = FROM
+							is_core_of = FROM
 						}
 					}
 					
@@ -274,6 +254,7 @@ political_actions = {
 						}
 						remove_claim_by = FROM
 					}
+					else = {}
 				}
 			}
         }
