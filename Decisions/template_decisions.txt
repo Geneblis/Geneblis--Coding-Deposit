@@ -2,8 +2,43 @@
 # COMMENTS HAVE BEEN INCLUDED FOR SAKE OF EXPLANATION, CAN BE REMOVED #
 # ID's must not include spaces!
 # Decisions MUST be visible for the AI to execute them, if in doubt, switch tag to the AI country and check if they can see/execute the mission.
+#
+# This decisions were made by the Iron Workshop and edited by Geneblis, all credits goes to the Iron Workshop's youtube channel. (https://www.youtube.com/@TheIronWorkshop)
 #####################################################################################################################
 simple_category = {
+
+	simple_mission_with_cancel = {
+		activation = { #Activate/Timeout conditions
+			has_civil_war = yes
+		}
+		available = { #Victory Conditions
+			has_civil_war = no
+			has_war = yes
+		}
+		cancel_trigger = { #Cancel/Inaviliability conditions
+			has_war = no
+		}
+		icon = mission_icon     # For GFX_decision_mission_icon
+		is_good = yes
+		war_with_on_timeout = SOV #Tooltip
+		days_mission_timeout = 100
+		fire_only_once = yes
+		#selectable_mission = yes
+		complete_effect = {
+			add_ideas = my_idea
+		}
+		timeout_effect = {
+			declare_war_on = {
+				target = SOV
+				type = annex_everything
+			}
+		}
+		cancel_effect = {
+			#effect when canceled 
+			add_political_power = -10
+		}
+	}
+
 	simple_decision = {
 		icon = GFX_decision_icon_default
 		activation = {
@@ -42,42 +77,6 @@ simple_category = {
 		}
 	}
 	
-	simple_timeout_mission = {		#ID of the mission, must not contain spaces!
-
-		icon = GFX_decision_icon_default		#The left side icon to show for this mission.
-		days_mission_timeout = 5	#The amount of days remaining until the mission is removed.
-		is_good = yes		#Determines if the timeout bar will be red or green, cosmetic setting only, has no actual impact on the mission
-		
-		# CONDITIONS TO MAKE THIS DECISION/MISSION APPEAR AND EXECUTE
-		
-		available = {		#Conditions that will allow the player/AI to click the mission and execute its effect.
-			NOT = { country_exists = AST }
-		}
-		
-		fire_only_once = no		#If set to yes, the decision will only appear once, after execution will not appear again.
-
-		visible = {		#Conditions to make this mission visible, can be left blank to make it always appear.
-			ROOT = {
-				is_ai = no
-			}		
-		}
-
-		# EFFECTS OF THIS DECISION/MISSION
-
-		timeout_effect = {		#The effects to execute once the mission timer expires.
-		}
-		
-		complete_effect  = {	#Effects once the available is TRUE/Mission success.
-		
-		}
-		
-		# AI LOGIC FOR THIS DECISION/MISSION
-
-		ai_will_do = {	#Modifiers for the AI to decide when to execute the mission.
-			factor = 0
-		}
-	}
-
 	#########################################################################################
 	#### MISIONS CAN HAVE A SECONDARY PHASE AFTER THEY ARE REMOVED WHICH USES A MODIFIER ####
 	#########################################################################################
@@ -141,10 +140,14 @@ simple_category = {
 				is_ai = no
 			}		
 		}
-		
 		target_root_trigger = {
 			always = yes
 		}
+
+		modifier = {
+			#
+		}
+
 		#targets = { USA GER SOV } 		#Can also use this to limit the targets for specifics.
 		target_trigger = {		#Trigget to make the decision appear, these override the visible paramater so if visible is true but target_trigger is not, the decision will not appear
 			FROM = {
@@ -164,6 +167,8 @@ simple_category = {
 		}
 	}
 }
+
+
 simple_category_with_picture = {
 	#Decisions with remove effects are great for an narrative gameplay or if you wish to give the player some longevity in his play time.
 	#Decisions with remove days can also accept modifiers, that works in the same way as a National Spirit.
@@ -193,7 +198,7 @@ simple_category_with_picture = {
 		cost = 0
 		
 		modifier = {
-			#modifiers given during the remove phase, aka, after enabling the complete effect.
+			#
 		}
 
 		complete_effect = {
@@ -203,7 +208,7 @@ simple_category_with_picture = {
 			}
 		}
 		
-		remove_effect = { #Given after the days_remove timer reaches 0.
+		remove_effect = {
 			add_political_power = 1
 		}
 
@@ -219,37 +224,66 @@ simple_category_with_picture = {
 category_with_map_icon = {
 	on_map_decision = {
 
-		icon = GFX_decision_icon_default		#The left side icon to show for this decision.
-		on_map_mode = map_only		#Determiens if the decision should only show up as an icon on the world map or as a decision bar in the decision interface too.
-		highlight_states = { state = 318 }		#This is required if on_map_mode = map_only is used, will highlight the state and will make the decision icon appear above that state on the world map.
-		days_remove = 5 #Amount of days it takes to trigger the remove_effect effects.
-		
-		# CONDITIONS TO MAKE THIS DECISION/MISSION APPEAR AND EXECUTE
-		
-		available = {		#Conditions that will allow the player/AI to click the decision and execute its effect.
+		icon = GFX_decision_icon_default
+		on_map_mode = map_only
+		highlight_states = { state = 318 }
+		days_remove = 5
+		available = {
 		}
 		
-		fire_only_once = no		#If set to yes, the decision will only appear once, after execution will not appear again.
-		days_re_enable = 5	#The amount of days of days it will take for the decision to reappear. Not valid if fire_only_once is set to yes
+		fire_only_once = no
+		days_re_enable = 5
 
-		visible = {		#Conditions to make this decision visible, can be left blank to make it always appear.
+		visible = {
 			ROOT = {
 				is_ai = no
 			}
 		}		
 
-		cost = 10		#The cost to execute the decision, by default its political power.
+		cost = 10
 
-
-		complete_effect = {		#The effects to execute once the decision icon is clicked.
+		complete_effect = {
 		}
 		
-		remove_effect = {		#The effects to execute once the mission expires/completes and enters the remove phase.
+		modifier = {
+			#
+		}
+
+		remove_effect = {
 		}
 		
-		ai_will_do = {	#Modifiers for the AI to decide when to execute the decision.
+		ai_will_do = {
 			factor = 0
 		}
 		
+	}
+
+	my_state_targeted_decision = {
+		target_root_trigger = {
+			#Trigger to ROOT country
+			has_civil_war = yes
+		}
+		target_array = GER.core_states
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+			}
+		}
+
+		modifier = {
+			#
+		}
+
+		on_map_mode = map_and_decisions_view
+		#on_map_mode = decision_view_only
+		#on_map_mode = map_only
+
+		icon = my_icon
+		cost = 20
+		complete_effect = {
+			FROM = {
+				remove_core_of = GER
+			}
+		}
 	}
 }
