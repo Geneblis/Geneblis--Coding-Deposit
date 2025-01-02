@@ -1,0 +1,4 @@
+﻿l_english:
+ #Decisions
+  gen_target_unlock_cores:0 "Preparing Integration in [FROM.GetName]."
+  gen_target_get_cores:0 "Integrating the State of [FROM.GetName]."

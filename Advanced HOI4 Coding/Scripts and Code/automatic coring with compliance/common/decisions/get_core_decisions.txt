@@ -1,0 +1,130 @@
+political_actions = {
+	gen_target_unlock_cores = { #unlocks cores decisions
+		visible = {
+			is_debug = yes
+		}
+		allowed = {
+			always = yes
+		}
+		available = { #requirements to complete the complete_effect. We want the mission to always fail/time-out, so keep this set to always=no, meaning that it always will fail.
+			hidden_trigger = {
+				always = no
+			}
+		}
+    	days_mission_timeout = 10
+    	selectable_mission = no
+		is_good = yes
+		activation = {
+			ROOT = {
+				AND = {
+					has_country_flag = can_core
+					has_war = no
+					any_owned_state = {
+						AND = {
+							is_owned_and_controlled_by = ROOT
+							NOT = {
+								is_core_of = ROOT
+							}
+						}
+					}
+				}
+			}
+		}
+		target_root_trigger = {
+			has_country_flag = can_core
+			#I recommend using a country flag for ROOT, if you don't want to, you can set this to: always = yes
+		}
+		targets_dynamic = yes
+		target_non_existing = yes
+		target_trigger = {
+			FROM = {
+				any_core_state = {
+					AND = {
+						is_owned_and_controlled_by = ROOT
+						NOT = {
+							has_state_flag = can_get_cored
+							is_core_of = ROOT
+						}
+					}
+				}
+			}
+		}
+		timeout_effect = {
+			FROM = {
+				every_core_state = {
+					limit = {
+						AND = {
+							NOT = {
+								is_core_of = ROOT
+							}
+							is_core_of = FROM
+							is_owned_and_controlled_by = ROOT
+						}
+					}
+					set_state_flag = can_get_cored
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+	gen_target_get_cores = { #cores decisions, automatically executed upon reaching requirement.
+		allowed = {
+			always = yes
+		}
+		visible = {
+			is_debug = yes
+		}
+    	days_mission_timeout = 7
+    	selectable_mission = no
+		on_map_mode = map_only
+		is_good = yes
+		target_root_trigger = {
+			any_owned_state = {
+				has_state_flag = can_get_cored
+			}
+		}
+		targets_dynamic = yes
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				AND = {
+					has_state_flag = can_get_cored
+					is_owned_and_controlled_by = ROOT
+					compliance > 30
+					resistance < 25
+				}
+			}
+		}
+		available = {hidden_trigger = {always = no}} #again, we want it to always fail.
+		activation = {
+			ROOT = {
+				any_owned_state = {
+					has_state_flag = can_get_cored
+					compliance > 30
+				}
+			}
+		}
+		complete_effect = {}
+		timeout_effect = {
+			FROM = {
+				if = {
+					limit = {
+						AND = {
+							NOT = {is_core_of = ROOT}
+							has_state_flag = can_get_cored
+						}
+					}
+					add_core_of = ROOT
+					force_disable_resistance = ROOT
+					clr_state_flag = can_get_cored
+				}
+				else = {clr_state_flag = can_get_cored}
+			}
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+}
